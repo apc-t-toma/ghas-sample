@@ -1,7 +1,7 @@
 [versions]
 junit = "5.11.3"
 commonsIo = "2.6"
-jacksonDatabind = "2.9.9"
+jacksonDatabind = "2.22.0"
 springWeb = "5.0.0.RELEASE"
 
 [libraries]
