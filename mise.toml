@@ -1,0 +1,15 @@
+[tools]
+java = "openjdk-25"
+gradle = "9.5.1"
+
+[tasks.setup]
+description = "Show toolchain versions managed by mise"
+run = "java --version && gradle --version"
+
+[tasks.build]
+description = "Build Kotlin project"
+run = "gradle clean build"
+
+[tasks.test]
+description = "Run unit tests"
+run = "gradle test"

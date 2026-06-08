@@ -1,0 +1,10 @@
+# Default owners
+* @security-team
+
+# GHAS critical configurations
+.github/workflows/* @security-team @platform-team
+.github/codeql/* @security-team
+.github/dependabot.yml @security-team
+
+# Sample vulnerable code requires explicit review
+src/vulnerable-samples/** @security-team

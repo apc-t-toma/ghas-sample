@@ -1,0 +1,16 @@
+{
+    "name": "GHAS demo custom patterns",
+    "description": "Template patterns for manual registration in Secret Scanning settings.",
+    "patterns": [
+        {
+            "name": "GHAS Test Token",
+            "regex": "GHAS_TEST_[A-Z0-9]{16}",
+            "secret_group": 0
+        },
+        {
+            "name": "Internal Demo API Key",
+            "regex": "DEMO_API_KEY_[a-f0-9]{32}",
+            "secret_group": 0
+        }
+    ]
+}

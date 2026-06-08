@@ -1,0 +1,12 @@
+name: "GHAS Kotlin Test Config"
+
+queries:
+  - uses: security-and-quality
+
+paths:
+  - src/main
+  - src/vulnerable-samples
+
+paths-ignore:
+  - test-data
+  - docs

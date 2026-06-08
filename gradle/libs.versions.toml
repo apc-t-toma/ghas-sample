@@ -1,0 +1,11 @@
+[versions]
+junit = "5.11.3"
+commonsIo = "2.6"
+jacksonDatabind = "2.9.9"
+springWeb = "5.0.0.RELEASE"
+
+[libraries]
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jacksonDatabind" }
+spring-web = { module = "org.springframework:spring-web", version.ref = "springWeb" }

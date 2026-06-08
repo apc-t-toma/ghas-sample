@@ -1,0 +1,95 @@
+name: Security Report
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 0-5"
+
+permissions:
+  contents: read
+  security-events: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Collect report date
+        run: date -u +"%Y-%m-%dT%H:%M:%SZ" > report-created-at.txt
+
+      - name: Fetch code scanning alerts
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const alerts = await github.paginate(github.rest.codeScanning.listAlertsForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100
+            });
+            const fs = require('fs');
+            fs.writeFileSync('code-scanning-alerts.json', JSON.stringify(alerts, null, 2));
+
+      - name: Fetch dependabot alerts
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const alerts = await github.paginate(github.rest.dependabot.listAlertsForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100
+            });
+            const fs = require('fs');
+            fs.writeFileSync('dependabot-alerts.json', JSON.stringify(alerts, null, 2));
+
+      - name: Build weekly security KPI summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            const codeScanning = JSON.parse(fs.readFileSync('code-scanning-alerts.json', 'utf8'));
+            const dependabot = JSON.parse(fs.readFileSync('dependabot-alerts.json', 'utf8'));
+
+            const countBy = (items, keyFn) =>
+              items.reduce((acc, item) => {
+                const key = keyFn(item) || 'unknown';
+                acc[key] = (acc[key] || 0) + 1;
+                return acc;
+              }, {});
+
+            const openCodeScanning = codeScanning.filter(a => a.state === 'open');
+            const openDependabot = dependabot.filter(a => a.state === 'open');
+
+            const codeScanningSeverity = countBy(
+              openCodeScanning,
+              a => a.rule?.security_severity_level || a.rule?.severity
+            );
+
+            const dependabotSeverity = countBy(
+              openDependabot,
+              a => a.security_vulnerability?.severity
+            );
+
+            const summary = {
+              generated_at: fs.readFileSync('report-created-at.txt', 'utf8').trim(),
+              totals: {
+                code_scanning_open: openCodeScanning.length,
+                dependabot_open: openDependabot.length,
+                all_open: openCodeScanning.length + openDependabot.length
+              },
+              by_severity: {
+                code_scanning: codeScanningSeverity,
+                dependabot: dependabotSeverity
+              }
+            };
+
+            fs.writeFileSync('security-kpi-summary.json', JSON.stringify(summary, null, 2));
+
+      - name: Upload report artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghas-security-report
+          path: |
+            report-created-at.txt
+            code-scanning-alerts.json
+            dependabot-alerts.json
+            security-kpi-summary.json

@@ -1,0 +1,15 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# IDE
+.idea/
+*.iml
+
+# Logs and temp
+*.log
+tmp/
+
+# GHAS test data that should remain local-only
+test-data/secrets/local/
