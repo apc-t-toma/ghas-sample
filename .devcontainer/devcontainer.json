@@ -1,0 +1,108 @@
+{
+  // https://containers.dev/implementors/json_reference/
+  // General properties
+  "name": "GitHub Advanced Security Sample",
+  "remoteEnv": {
+    "PATH": "/home/vscode/.local/share/mise/shims:/home/vscode/.local/bin:${containerEnv:PATH}"
+  },
+  "features": {
+    // https://containers.dev/features
+    "ghcr.io/devcontainers/features/docker-in-docker:3.0.1": {},
+    "ghcr.io/devcontainers/features/git:1.3.5": {},
+    "ghcr.io/devcontainers/features/git-lfs:1.2.5": {},
+    "ghcr.io/devcontainers/features/github-cli:1.1.0": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // GitHub integration
+        "GitHub.copilot-chat",
+        "GitHub.vscode-pull-request-github",
+        "GitHub.vscode-github-actions",
+        // Code quality & formatting
+        "EditorConfig.EditorConfig",
+        // Error highlighting
+        "usernamehw.errorlens",
+        // Documentation & Markdown
+        "DavidAnson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one",
+        // TOML support
+        "tamasfe.even-better-toml",
+        // YAML support
+        "redhat.vscode-yaml",
+        // Shell scripting
+        "timonwong.shellcheck",
+        // etc...
+        // "kilocode.Kilo-Code",
+        // "anthropic.claude-code",
+        "shardulm94.trailing-spaces",
+        "oderwat.indent-rainbow",
+        "ms-vscode.vscode-chat-customizations-evaluations"
+      ],
+      "mcp": {
+        "servers": {
+          "drawio": {
+            "command": "npx",
+            "args": [
+              "@drawio/mcp"
+            ]
+          },
+          "github": {
+            "type": "http",
+            "url": "https://api.githubcopilot.com/mcp/",
+            "headers": {
+              "Authorization": "Bearer ${containerEnv:GITHUB_PAT}"
+            }
+          }
+        }
+      },
+      "settings": {
+        // Editor formatting behavior
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "quickfix.biome": "explicit",
+          "source.organizeImports.biome": "explicit"
+        },
+        // File handling
+        "files.eol": "\n",
+        "files.insertFinalNewline": true,
+        "files.trimFinalNewlines": true,
+        "files.trimTrailingWhitespace": true,
+        // GitHub Copilot Chat: Commit message generation
+        "github.copilot.chat.commitMessageGeneration.instructions": [
+          {
+            "file": ".github/copilot-commit-message-instructions.md"
+          }
+        ],
+        // Formatter
+        "[markdown]": {
+          "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+          "files.trimTrailingWhitespace": false
+        },
+        "markdownlint.config": {
+          "MD004": {
+            "style": "dash"
+          },
+          "MD033": {
+            "allowed_elements": [
+              "details",
+              "summary"
+            ]
+          },
+          "MD040": false
+        },
+        "[yaml]": {
+          "editor.defaultFormatter": "redhat.vscode-yaml"
+        }
+      }
+    }
+  },
+  // Scenario specific properties
+  // Docker Compose configuration
+  "dockerComposeFile": "compose.yaml",
+  "service": "devcontainer",
+  "workspaceFolder": "/home/vscode/ghas-sample",
+  // Tool-specific customizations
+  // Lifecycle scripts
+  "postCreateCommand": "bash ./.devcontainer/post-create.sh"
+}
