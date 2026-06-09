@@ -2,7 +2,7 @@
 junit = "5.11.3"
 commonsIo = "2.6"
 jacksonDatabind = "2.22.0"
-springWeb = "5.0.0.RELEASE"
+springWeb = "6.1.21"
 
 [libraries]
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
