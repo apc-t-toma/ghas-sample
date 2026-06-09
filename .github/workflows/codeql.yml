@@ -26,6 +26,7 @@ jobs:
         uses: github/codeql-action/init@v4
         with:
           languages: java-kotlin
+          build-mode: manual
           config-file: ./.github/codeql/codeql-config.yml
 
       - name: Setup Java
@@ -40,7 +41,7 @@ jobs:
           gradle-version: "9.5.1"
 
       - name: Build
-        run: gradle clean build --no-daemon
+        run: gradle clean build --no-daemon --no-build-cache -Dkotlin.compiler.execution.strategy=in-process
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
