@@ -1,6 +1,6 @@
 [versions]
 junit = "5.11.3"
-commonsIo = "2.6"
+commonsIo = "2.14.0"
 jacksonDatabind = "2.22.0"
 springWeb = "5.0.0.RELEASE"
 
