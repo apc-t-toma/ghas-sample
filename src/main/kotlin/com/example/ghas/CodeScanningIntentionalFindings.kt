@@ -21,7 +21,7 @@ object CodeScanningIntentionalFindings {
 
     // Intentionally weak digest algorithm for CodeQL verification.
     fun md5Hex(input: String): String {
-        val digest = MessageDigest.getInstance("MD5").digest(input.toByteArray())
+        val digest = MessageDigest.getInstance("SHA-256").digest(input.toByteArray())
         return digest.joinToString("") { "%02x".format(it) }
     }
 
