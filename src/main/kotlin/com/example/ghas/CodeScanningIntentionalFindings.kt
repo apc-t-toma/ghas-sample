@@ -16,7 +16,7 @@ object CodeScanningIntentionalFindings {
 
     // Intentionally unsafe command construction for CodeQL verification.
     fun runShellCommand(userInput: String): Process {
-        return Runtime.getRuntime().exec("sh -c \"echo $userInput\"")
+        return ProcessBuilder("echo", userInput).start()
     }
 
     // Intentionally weak digest algorithm for CodeQL verification.
