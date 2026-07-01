@@ -125,9 +125,9 @@ Continue only if all conditions are true. Otherwise perform noop and stop.
 1. Event is pull_request or workflow_dispatch.
 2. Target PR is Dependabot-originated.
 3. For workflow_dispatch, identify exactly one target PR in this priority order:
-1. If pr-number is provided, use that PR.
-2. If pr-number is not provided, match branch input against head.ref.
-3. If matches are 0 or more than 1, treat as unresolved, noop, and leave a reason in a comment.
+    1. If pr-number is provided, use that PR.
+    2. If pr-number is not provided, match branch input against head.ref.
+    3. If matches are 0 or more than 1, treat as unresolved, noop, and leave a reason in a comment.
 
 ## Change Integrity Check
 
@@ -164,15 +164,15 @@ Assess compatibility and runtime behavior impact by correlating package changes 
 Evaluate risk in the old-version operating state, not only post-upgrade safety.
 
 1. Exposure feasibility:
-1. Are vulnerability preconditions met by actual implementation paths?
-2. Is there reachable attack flow from realistic entry points?
+    1. Are vulnerability preconditions met by actual implementation paths?
+    2. Is there reachable attack flow from realistic entry points?
 2. Data exposure likelihood:
-1. Could critical data be reached or leaked?
-2. Is there direct evidence of occurrence, or only probabilistic reasoning?
+    1. Could critical data be reached or leaked?
+    2. Is there direct evidence of occurrence, or only probabilistic reasoning?
 3. Evidence level classification:
-1. Confirmed: factual evidence indicates occurrence.
-2. Likely: conditions and reachability strongly indicate high probability.
-3. Plausible: partial conditions exist; more verification required.
+    1. Confirmed: factual evidence indicates occurrence.
+    2. Likely: conditions and reachability strongly indicate high probability.
+    3. Plausible: partial conditions exist; more verification required.
 4. Unlikely: required conditions are not satisfied.
 
 ### 3. Incident Decision Rule
@@ -228,23 +228,23 @@ Always output sections in this exact order:
 ### Required Content by Section
 
 1. Dependabot Report Digest:
-1. Target packages, version changes, relevant security or release notes.
+    1. Target packages, version changes, relevant security or release notes.
 2. Change Integrity Check:
-1. Overall change profile and any unexpected modifications.
+    1. Overall change profile and any unexpected modifications.
 3. Codebase Usage Impact Analysis:
-1. Where and how the dependency is used, and affected surfaces.
+    1. Where and how the dependency is used, and affected surfaces.
 4. Security Analysis:
-1. Old-version exposure level: Confirmed/Likely/Plausible/Unlikely.
-2. Evidence basis: preconditions, reachability, data targets, observed traces.
+    1. Old-version exposure level: Confirmed/Likely/Plausible/Unlikely.
+    2. Evidence basis: preconditions, reachability, data targets, observed traces.
 5. Decision Matrix:
-1. Show merge decision and incident decision on separate lines.
-2. Explicitly state the two-axis independence.
+    1. Show merge decision and incident decision on separate lines.
+    2. Explicitly state the two-axis independence.
 6. Incident Decision:
-1. Required or Not Required with rationale.
-2. If Required, include initial high-priority response actions.
+    1. Required or Not Required with rationale.
+    2. If Required, include initial high-priority response actions.
 7. Merge Decision:
-1. Merge Recommended, Conditional Hold, or Merge Blocked.
-2. Summarize rationale within 3 lines.
+    1. Merge Recommended, Conditional Hold, or Merge Blocked.
+    2. Summarize rationale within 3 lines.
 
 ## Comment Update Policy
 
@@ -257,8 +257,8 @@ Always output sections in this exact order:
 1. Remove labels that conflict with the current merge decision and keep only the label representing the current merge state.
 2. Set check-run status based on merge decision.
 3. If Incident Review Required:
-1. Add incident-review-required label.
-2. Do not change merge labels or check-run status solely because of incident decision.
+    1. Add incident-review-required label.
+    2. Do not change merge labels or check-run status solely because of incident decision.
 
 ## Strict Quality Constraints
 
