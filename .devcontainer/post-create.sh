@@ -5,6 +5,7 @@ set -euo pipefail
 mise trust
 mise install
 
+gh extension install github/gh-aw
 # GitHub CLI 認証
 echo "${GITHUB_PAT}" | gh auth login --with-token
 
