@@ -3,10 +3,10 @@ junit = "6.1.0"
 commonsIo = "2.22.0"
 jacksonDatabind = "2.22.0"
 springWeb = "7.0.8"
-commonsLang = "3.12.0"
+commonsLang = "3.18.0"
 log4j = "1.2.17"
 gson = "2.8.9"
-okhttp = "3.14.9"
+okhttp = "4.9.2"
 httpClient = "4.5.13"
 
 [libraries]
