@@ -1,8 +1,13 @@
 ---
 on:
   pull_request:
-    branches: [main]
-    types: [opened, reopened, synchronize, ready_for_review]
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
   workflow_dispatch:
 
 permissions:
