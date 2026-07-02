@@ -6,7 +6,7 @@ springWeb = "7.0.8"
 commonsLang = "3.12.0"
 log4j = "1.2.17"
 gson = "2.8.9"
-okhttp = "3.14.9"
+okhttp = "5.4.0"
 httpClient = "4.5.13"
 
 [libraries]
