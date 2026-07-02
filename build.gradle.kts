@@ -17,6 +17,13 @@ dependencies {
     implementation(libs.jackson.databind)
     implementation(libs.spring.web)
 
+    // Additional libraries for comprehensive Dependabot PR Triage test scenarios
+    implementation(libs.commons.lang)    // Breaking change scenario (3.x -> 4.x)
+    implementation(libs.log4j)            // Known vulnerability scenario
+    implementation(libs.gson)             // Deprecated API usage scenario
+    implementation(libs.okhttp)           // Security patch / minor version scenario
+    implementation(libs.httpclient)       // Minor version compatibility scenario
+
     testImplementation(kotlin("test"))
     testImplementation(libs.junit.jupiter)
 }
