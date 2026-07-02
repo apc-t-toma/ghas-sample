@@ -1,5 +1,5 @@
 [versions]
-junit = "6.1.0"
+junit = "6.1.1"
 commonsIo = "2.22.0"
 jacksonDatabind = "2.22.0"
 springWeb = "7.0.8"
