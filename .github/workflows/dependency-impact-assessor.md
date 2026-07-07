@@ -1,15 +1,16 @@
 ---
 on:
-  bots:
-    - dependabot
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
+# 検証プロジェクトのため pull_request トリガーを設定しない
+#   bots:
+#     - dependabot
+#   pull_request:
+#     branches:
+#       - main
+#     types:
+#       - opened
+#       - reopened
+#       - synchronize
+#       - ready_for_review
   workflow_dispatch:
 
 permissions:
