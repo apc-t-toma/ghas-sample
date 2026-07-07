@@ -1,7 +1,7 @@
 ---
 on:
   bots:
-    - github-actions
+    - dependabot
   pull_request:
     branches:
       - main
