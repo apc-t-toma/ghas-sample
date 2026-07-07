@@ -1,17 +1,31 @@
 version: 2
-updates:
-  - package-ecosystem: "gradle"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    open-pull-requests-limit: 10
-    labels:
-      - "dependencies"
-      - "security"
 
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
+updates:
+  - package-ecosystem: gradle
+    directory: /
+    groups:
+      security-minor-patch:
+        applies-to: security-updates
+        update-types:
+          - minor
+          - patch
+      version-minor-patch:
+        applies-to: version-updates
+        update-types:
+          - minor
+          - patch
     labels:
-      - "dependencies"
+      - dependencies
+      - security
+    schedule:
+      interval: daily
+
+  - package-ecosystem: github-actions
+    directory: /
+    labels:
+      - dependencies
+    schedule:
+      interval: weekly
+    exclude-paths:
+      - .github/workflows/agentics-maintenance.yml
+      - .github/workflows/*.lock.yml
